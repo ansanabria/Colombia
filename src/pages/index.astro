@@ -230,6 +230,24 @@ const laminas = [
             { passive: true, once: true }));
         setTimeout(() => pista && pista.classList.add("oculta"), 4600);
 
+        // Popup del ensayo: queda visible al menos 5 s tras el hover/foco.
+        const ens = document.querySelector(".ensayo");
+        const tip = document.querySelector(".ensayo__tip");
+        if (ens && tip) {
+          let cierre;
+          const mostrar = () => { clearTimeout(cierre); tip.classList.add("visible"); };
+          const programarCierre = () => {
+            clearTimeout(cierre);
+            cierre = setTimeout(() => tip.classList.remove("visible"), 5000);
+          };
+          ens.addEventListener("pointerenter", mostrar);
+          ens.addEventListener("focus", mostrar);
+          ens.addEventListener("pointerleave", programarCierre);
+          ens.addEventListener("blur", programarCierre);
+          tip.addEventListener("pointerenter", mostrar);
+          tip.addEventListener("pointerleave", programarCierre);
+        }
+
         pintar(idx, null);
       })();
     </script>
@@ -334,7 +352,8 @@ const laminas = [
     transition: opacity 0.22s var(--ease-expo), transform 0.22s var(--ease-expo);
   }
   .ensayo:hover ~ .ensayo__tip,
-  .ensayo:focus-visible ~ .ensayo__tip { opacity: 1; transform: translateY(0); }
+  .ensayo:focus-visible ~ .ensayo__tip,
+  .ensayo__tip.visible { opacity: 1; transform: translateY(0); }
 
   /* ── Escenario: poster (todo visible) + barra fija = un fold ── */
   .escenario {
@@ -501,17 +520,20 @@ const laminas = [
     align-items: center;
     gap: 0.5ch;
     font-size: clamp(0.7rem, 0.64rem + 0.4vw, 0.92rem);
+    line-height: 1;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .barra__rotulo span { display: inline-flex; align-items: center; line-height: 1; }
   .barra__folio {
     font-family: "Big Shoulders Display", system-ui, sans-serif;
     font-weight: 800;
     color: var(--rojo);
     font-size: 1.5em;
+    line-height: 1;
   }
   .indice { display: flex; gap: clamp(0.35rem, 1.2vw, 0.7rem); list-style: none; padding: 0; }
   .indice button {
