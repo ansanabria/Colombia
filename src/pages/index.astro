@@ -11,37 +11,44 @@ const laminas = [
   {
     id: "manifiesto",
     folio: "00",
-    titulo: "Manifiesto",
+    titulo: "Pregunta orientadora",
     src: "/posters/p0.webp",
-    alt: "Portada del zine: «Radiografía de la explotación». Sobre fondo rojo, la tesis: las minorías en Colombia no fueron marginalizadas por accidente sino por estructuras al servicio del capital; tres caras de un mismo proceso heredado del colonialismo.",
+    alt: "Portada del zine. Sobre fondo rojo, pregunta orientadora: cómo se manifiestan las relaciones de poder en torno a memoria y violencia a partir de las perspectivas de las fuentes.",
+  },
+  {
+    id: "tesis",
+    folio: "01",
+    titulo: "Tesis",
+    src: "/posters/p1.webp",
+    alt: "Panfleto 1, Tesis. Cartel tipográfico con la tesis central y las fuentes primarias y secundarias que sostienen el ensayo visual.",
   },
   {
     id: "cuerpos",
-    folio: "01",
-    titulo: "Los cuerpos reclutados",
-    src: "/posters/p1.webp",
-    alt: "Panfleto 1, Los cuerpos reclutados. Linograbado de jóvenes reclutas pobres marchando hacia un cuartel; dato: 80% de los reclutas son de estratos 0, 1 y 2 y solo 0,01% de estrato 6. El Estado los usa, los gasta, los descarta.",
+    folio: "02",
+    titulo: "Coerción física",
+    src: "/posters/p2.webp",
+    alt: "Panfleto 2, Coerción física: Los cuerpos reclutados. Linograbado de jóvenes reclutas pobres marchando hacia un cuartel y una cita sobre los ricos que ponen la plata y los pobres que ponen los muertos.",
   },
   {
     id: "tierra",
-    folio: "02",
+    folio: "03",
     titulo: "La tierra robada",
-    src: "/posters/p2.webp",
-    alt: "Panfleto 2, La tierra robada. Collage con recortes del cómic Caminos Condenados sobre el despojo en Montes de María; cita de Ramiro: la palma no quiere yuca, ni plátano, ni maíz cerca, quiere estar sola.",
+    src: "/posters/p3.webp",
+    alt: "Panfleto 3, La tierra robada. Collage de recortes tipo cómic sobre Montes de María, el agronegocio, el desplazamiento y el despojo cotidiano.",
   },
   {
     id: "canto",
-    folio: "03",
+    folio: "04",
     titulo: "El canto que no calla",
-    src: "/posters/p3.webp",
-    alt: "Panfleto 3, El canto que no calla. Linograbado de las alabaoras de Pogue cantando junto al río Atrato; el duelo de Bojayá convertido en denuncia que llega al presidente.",
+    src: "/posters/p4.webp",
+    alt: "Panfleto 4, El canto que no calla. Linograbado de alabaoras cantando junto al río y una cita de alabao como denuncia política.",
   },
   {
     id: "ahora",
-    folio: "04",
+    folio: "05",
     titulo: "¿Y ahora qué?",
-    src: "/posters/p4.webp",
-    alt: "Panfleto 4, ¿Y ahora qué? La explotación de las minorías no es un capítulo cerrado del conflicto: es el motor del sistema. ¿Qué transformación real es posible?",
+    src: "/posters/p5.webp",
+    alt: "Panfleto 5, ¿Y ahora qué? Conclusión tipográfica: el poder se sostiene a través de la violencia, con síntesis de coerción física, económica y cultural.",
   },
 ];
 ---
@@ -77,7 +84,7 @@ const laminas = [
       Abre el ensayo académico completo (texto íntegro con fuentes) en Google Docs, en una pestaña nueva.
     </span>
 
-    <main class="escenario" aria-roledescription="carrusel" aria-label="Zine Memoria y Violencia, cinco panfletos">
+    <main class="escenario" aria-roledescription="carrusel" aria-label="Zine Memoria y Violencia, seis panfletos">
       <div class="lienzo">
         {laminas.map((l, i) => (
           <figure class="lamina" data-i={i} aria-hidden={i === 0 ? "false" : "true"}>
@@ -149,7 +156,7 @@ const laminas = [
         const pista = document.querySelector(".pista");
         const folios = dots.map((d) => d.querySelector("span").textContent);
         const titulos = dots.map((d) => d.getAttribute("aria-label").split(": ")[1]);
-        const ids = ["manifiesto", "cuerpos", "tierra", "canto", "ahora"];
+        const ids = ["manifiesto", "tesis", "cuerpos", "tierra", "canto", "ahora"];
         const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         const fromHash = () => {
